@@ -1,0 +1,10 @@
+carla==0.9.14
+jupyterlab 
+matplotlib 
+opencv-python 
+scikit-image 
+pandas 
+tqdm 
+pypng 
+open3d 
+tabulate

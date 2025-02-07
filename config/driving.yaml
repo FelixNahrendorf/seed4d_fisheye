@@ -1,0 +1,77 @@
+BEVCamera: true
+large_vehicles: false
+carla:
+  fixed_delta_seconds: 0.1 #0.5
+  host: localhost
+  port: 2000
+  synchronous_mode: true
+  timeout: 720.0
+data_dir: data
+dataset:
+  nuscenes:
+    attached_to_vehicle: true
+    sensor_info:
+      # camera settings
+      fov: 90
+      height: 900
+      width: 1600
+      # lidar settings
+      # channels: 32
+      # points_per_second: 90000
+      # rotation_frequency: 40
+      # range: 20
+      type:
+      - sensor.camera.rgb
+      - sensor.camera.semantic_segmentation
+      - sensor.camera.instance_segmentation
+      - sensor.camera.depth
+      # - sensor.lidar.ray_cast
+    transform_file_cams: config/camera_configs/nuscenes_adjusted.json
+    # transform_file_lidar: config/lidar_configs/nuscenes_lidar.json
+  # sphere:
+  #   attached_to_vehicle: true
+  #   sensor_info:
+  #     # camera settings
+  #     fov: 90
+  #     height: 300
+  #     width: 400
+  #     # lidar settings
+  #     #channels: 32
+  #     #points_per_second: 90000
+  #     #rotation_frequency: 40
+  #     #range: 20
+  #     type:
+  #     - sensor.camera.rgb
+  #     - sensor.camera.semantic_segmentation
+  #     - sensor.camera.instance_segmentation
+  #     - sensor.camera.depth
+  #     #- sensor.lidar.ray_cast
+  #   transform_file_cams: config/camera_configs/sphere-100_radius-10-fov.json
+invisible: false
+3Dboundingbox: true
+map: Town01 #Town02, Town01, spw 131
+min_distance: 0. #0.5
+number_of_vehicles: 5 #5
+number_of_walkers: 0
+spawn_point:
+- 1
+- 2
+- 3
+steps: 5
+vehicle: vehicle.mini.cooper_s
+weather: ClearNoon
+traffic_vehicles:
+  dataset:
+    nuscenes:
+      attached_to_vehicle: true
+      sensor_info:
+        fov: 70
+        height: 512
+        width: 512
+        type:
+        - sensor.camera.rgb
+        - sensor.camera.semantic_segmentation
+        - sensor.camera.instance_segmentation
+        - sensor.camera.optical_flow
+        - sensor.camera.depth
+      transform_file_cams: config/camera_configs/nuscenes_adjusted.json

@@ -1,0 +1,57 @@
+BEVCamera: true
+large_vehicles: false
+carla:
+  fixed_delta_seconds: 0.1
+  host: localhost
+  port: 2000
+  synchronous_mode: true
+  timeout: 720.0
+data_dir: data
+dataset:
+  nuscenes:
+    attached_to_vehicle: true
+    sensor_info:
+      # camera
+      fov: 90
+      height: 900
+      width: 1600
+      # lidar
+      channels: 32
+      points_per_second: 90000
+      rotation_frequency: 40
+      range: 20
+      type:
+      - sensor.camera.rgb
+      - sensor.camera.semantic_segmentation
+      - sensor.camera.instance_segmentation
+      - sensor.camera.depth
+      - sensor.lidar.ray_cast
+    transform_file_cams: /mariustheo/Generator/config/camera/nuscenes/nuscenes_adjusted.json
+    transform_file_lidar: /mariustheo/Generator/config/lidar/nuscenes/nuscenes_adjusted.json
+  sphere:
+    attached_to_vehicle: true
+    sensor_info:
+      # camera 
+      fov: 90
+      height: 300
+      width: 400
+      type:
+      - sensor.camera.rgb
+      - sensor.camera.semantic_segmentation
+      - sensor.camera.instance_segmentation
+      - sensor.camera.depth
+    transform_file_cams: /mariustheo/Generator/config/camera/sphere/sphere.json
+invisible: true
+3Dboundingbox: true
+map: Town01
+min_distance: 0. 
+number_of_vehicles: 50
+number_of_walkers: 0
+spawn_point:
+#- 25
+- 20
+#- 0
+steps: 1
+vehicle: vehicle.mini.cooper_s
+weather: CloudyNoon
+other_vehicles_have_sensors: false

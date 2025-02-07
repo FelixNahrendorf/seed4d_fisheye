@@ -1,0 +1,3 @@
+see this for more information about the nuscene camera setup: https://github.com/nutonomy/nuscenes-devkit/issues/672
+
+values where shifted by [-0.8, 0, 0] to fit the vehicles
