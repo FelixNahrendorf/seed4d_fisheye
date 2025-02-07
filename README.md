@@ -31,11 +31,13 @@ Copyright (C) 2025 co-pace GmbH (subsidiary of Continental AG). All rights reser
 ## Citation
 If you find this code useful, please reference in your paper:
 ```bibtex
-@misc{seed4d,
+@article{seed4d,
       title={SEED4D: A Synthetic Ego--Exo Dynamic 4D Data Generator, Driving Dataset and Benchmark}, 
       author={Marius Kästingschäfer and Théo Gieruc and Sebastian Bernhard and Dylan Campbell and Eldar Insafutdinov and Eyvaz Najafli and Thomas Brox},
       year={2024},
       archivePrefix={arXiv},
-      url={https://arxiv.org/abs/2412.00730}, 
+      url={https://arxiv.org/abs/2412.00730},
+      journal={arXiv preprint},
+      volume={arXiv:2412.00730},
 }
 ```
