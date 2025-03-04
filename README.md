@@ -1,4 +1,6 @@
-# SEED4D: A Synthetic Ego–Exo Dynamic 4D Driving 
+<h2 align="center">SEED4D: A Synthetic Ego–Exo Dynamic 4D Driving </h2>
+<h3 align="center">WACV 2025</h3>
+
 Marius Kästingschäfer and Théo Gieruc and Sebastian Bernhard and Dylan Campbell and Eldar Insafutdinov and Eyvaz Najafli and Thomas Brox 
 
 ![Teaser image](docs/media/teaser/overview.png)
