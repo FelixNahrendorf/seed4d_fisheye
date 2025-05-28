@@ -1,0 +1,36 @@
+BEVCamera: true
+large_vehicles: false
+invisible_ego: true
+invisible_all: false
+3Dboundingbox: true
+sort_spawnpoints: true
+other_vehicles_have_sensors: false
+carla:
+  fixed_delta_seconds: 0.008894182
+  host: localhost
+  port: 2000
+  synchronous_mode: true
+  timeout: 40.0
+data_dir: data
+dataset:
+  nuscenes:
+    attached_to_vehicle: true
+    sensor_info:
+      fov: 90
+      height: 640
+      width: 640
+      type:
+      - sensor.camera.rgb
+      - sensor.camera.semantic_segmentation
+      - sensor.camera.instance_segmentation
+      - sensor.camera.depth
+    transform_file_cams: /seed4d/config/camera/fisheye_prep/fisheye_prep.json
+map: Town01
+min_distance: 0.0
+number_of_vehicles: 20
+number_of_walkers: 20
+spawn_point:
+- 1
+steps: 1
+vehicle: vehicle.audi.tt
+weather: ClearNoon
