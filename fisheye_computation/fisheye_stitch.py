@@ -11,6 +11,7 @@ import cv2
 from scipy.spatial.transform import Rotation as R
 from typing import Tuple, Dict, Union
 import os
+import json
 
 
 class BaseProjection:
@@ -284,6 +285,92 @@ class FisheyeGenerator:
             images[key] = cv2.cvtColor(images[key], cv2.COLOR_BGR2RGB)
         
         return self.generate_fisheye(images)
+    
+    def save_camera_intrinsics(self, output_path: str = "camera_intrinsics.json") -> None:
+        """
+        Save camera intrinsics to a JSON file.
+        
+        Args:
+            output_path: Path to save the JSON file
+        """
+        intrinsics_data = {
+            "fisheye_camera": {
+                "width": self.fisheye_width,
+                "height": self.fisheye_height,
+                "fov_degrees": self.fov,
+                "projection_model": "equidistant",
+                "fx": float(self.projection_model.fx),
+                "fy": float(self.projection_model.fy),
+                "cx": float(self.projection_model.cx),
+                "cy": float(self.projection_model.cy),
+                "distortion_coefficients": {
+                    "k0": float(self.projection_model.k0),
+                    "k1": float(self.projection_model.k1),
+                    "k2": float(self.projection_model.k2),
+                    "k3": float(self.projection_model.k3),
+                    "k4": float(self.projection_model.k4)
+                },
+                "intrinsic_matrix": self._get_fisheye_intrinsic_matrix().tolist()
+            },
+            "pinhole_cameras": {
+                "width": self.pinhole_width,
+                "height": self.pinhole_height, 
+                "fov_degrees": 90,
+                "fx": float(self.pinhole_intrinsic[0, 0]),
+                "fy": float(self.pinhole_intrinsic[1, 1]),
+                "cx": float(self.pinhole_intrinsic[0, 2]),
+                "cy": float(self.pinhole_intrinsic[1, 2]),
+                "intrinsic_matrix": self.pinhole_intrinsic.tolist()
+            },
+            "metadata": {
+                "coordinate_system": "opencv",
+                "units": "pixels",
+                "description": "Camera intrinsics for fisheye image generation from 5 pinhole cameras",
+                "pinhole_arrangement": "left, top, front, bottom, right (horizontal concatenation)"
+            }
+        }
+        
+        # Create directory if it doesn't exist
+        os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else '.', exist_ok=True)
+        
+        # Save to JSON file
+        with open(output_path, 'w') as f:
+            json.dump(intrinsics_data, f, indent=4)
+        
+        print(f"Camera intrinsics saved to: {output_path}")
+    
+    def _get_fisheye_intrinsic_matrix(self) -> np.ndarray:
+        """
+        Get the fisheye camera intrinsic matrix in standard format.
+        
+        Returns:
+            3x3 intrinsic matrix
+        """
+        K = np.array([
+            [self.projection_model.fx, 0, self.projection_model.cx],
+            [0, self.projection_model.fy, self.projection_model.cy],
+            [0, 0, 1]
+        ])
+        return K
+    
+    def load_camera_intrinsics(self, json_path: str) -> Dict:
+        """
+        Load camera intrinsics from a JSON file.
+        
+        Args:
+            json_path: Path to the JSON file containing camera intrinsics
+            
+        Returns:
+            Dictionary containing the loaded intrinsics data
+        """
+        if not os.path.exists(json_path):
+            raise FileNotFoundError(f"Intrinsics file not found: {json_path}")
+        
+        with open(json_path, 'r') as f:
+            intrinsics_data = json.load(f)
+        
+        print(f"Camera intrinsics loaded from: {json_path}")
+        return intrinsics_data
 
 
 # Example usage and utility functions
@@ -318,6 +405,9 @@ def demo_with_sample_images():
     cv2.imwrite('fisheye_output.jpg', cv2.cvtColor(fisheye_img, cv2.COLOR_RGB2BGR))
     print("Fisheye image saved as 'fisheye_output.jpg'")
     
+    # Save camera intrinsics
+    generator.save_camera_intrinsics('camera_intrinsics.json')
+    
     return fisheye_img
 
 
@@ -335,6 +425,12 @@ def main():
     }
     fisheye_img = generator.generate_fisheye_from_files(image_paths)
     cv2.imwrite(os.path.join("/seed4d/fisheye_computation/images", 'fisheye_stitch_output.png'), cv2.cvtColor(fisheye_img, cv2.COLOR_RGB2BGR))
+
+    # Save camera intrinsics
+    generator.save_camera_intrinsics(os.path.join("/seed4d/fisheye_computation/images", 'fisheye_camera_intrinsics.json'))
+    
+    # Load intrinsics later if needed
+    intrinsics = generator.load_camera_intrinsics(os.path.join("/seed4d/fisheye_computation/images", 'fisheye_camera_intrinsics.json'))
     
 
 if __name__ == '__main__':
