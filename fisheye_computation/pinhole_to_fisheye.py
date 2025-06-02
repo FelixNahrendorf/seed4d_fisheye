@@ -424,13 +424,13 @@ def main():
         'bottom': '/seed4d/data/Town01/ClearNoon/vehicle.audi.tt/spawn_point_1/step_0/ego_vehicle/nuscenes/sensors/4_rgb.png'
     }
     fisheye_img = generator.generate_fisheye_from_files(image_paths)
-    cv2.imwrite(os.path.join("/seed4d/fisheye_computation/images", 'fisheye_stitch_output.png'), cv2.cvtColor(fisheye_img, cv2.COLOR_RGB2BGR))
+    cv2.imwrite(os.path.join("/seed4d/fisheye_computation/fisheye_images", 'fisheye_image.png'), cv2.cvtColor(fisheye_img, cv2.COLOR_RGB2BGR))
 
     # Save camera intrinsics
-    generator.save_camera_intrinsics(os.path.join("/seed4d/fisheye_computation/images", 'fisheye_camera_intrinsics.json'))
+    generator.save_camera_intrinsics(os.path.join("/seed4d/fisheye_computation/fisheye_images", 'config.json'))
     
     # Load intrinsics later if needed
-    intrinsics = generator.load_camera_intrinsics(os.path.join("/seed4d/fisheye_computation/images", 'fisheye_camera_intrinsics.json'))
+    intrinsics = generator.load_camera_intrinsics(os.path.join("/seed4d/fisheye_computation/fisheye_images", 'config.json'))
     
 
 if __name__ == '__main__':

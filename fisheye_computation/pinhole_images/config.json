@@ -1,0 +1,101 @@
+{
+    "fisheye_camera": {
+        "width": 640,
+        "height": 640,
+        "fov_degrees": 180,
+        "projection_model": "equidistant",
+        "fx": 203.71832715762605,
+        "fy": 203.71832715762605,
+        "cx": 320.0,
+        "cy": 320.0
+    },
+    "pinhole_cameras": {
+        "width": 640,
+        "height": 640,
+        "fov_degrees": 90,
+        "fx": 320.0,
+        "fy": 320.0,
+        "cx": 320.0,
+        "cy": 320.0,
+        "intrinsic_matrix": [
+            [
+                320.0,
+                0.0,
+                320.0
+            ],
+            [
+                0.0,
+                320.0,
+                320.0
+            ],
+            [
+                0.0,
+                0.0,
+                1.0
+            ]
+        ]
+    },
+    "camera_orientations": {
+        "front": [
+            [
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                1.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "left_front": [
+            [
+                0.7071067811865475,
+                0.1830127018922193,
+                0.6830127018922192
+            ],
+            [
+                0.0,
+                0.9659258262890682,
+                -0.2588190451025207
+            ],
+            [
+                -0.7071067811865475,
+                0.18301270189221927,
+                0.6830127018922193
+            ]
+        ],
+        "right_front": [
+            [
+                0.7071067811865475,
+                -0.1830127018922193,
+                -0.6830127018922192
+            ],
+            [
+                0.0,
+                0.9659258262890682,
+                -0.2588190451025207
+            ],
+            [
+                0.7071067811865475,
+                0.18301270189221927,
+                0.6830127018922193
+            ]
+        ]
+    },
+    "metadata": {
+        "description": "Configuration for fisheye to pinhole conversion",
+        "coordinate_system": "opencv",
+        "optimal_coverage": "3 cameras positioned for maximum information retention",
+        "camera_positions": {
+            "front": "Straight ahead (0\u00b0 yaw, 0\u00b0 pitch)",
+            "left_front": "45\u00b0 left, 15\u00b0 up",
+            "right_front": "45\u00b0 right, 15\u00b0 up"
+        }
+    }
+}
